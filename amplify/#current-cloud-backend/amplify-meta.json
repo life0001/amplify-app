@@ -1,0 +1,98 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-chatgpt-dev-133849-authRole",
+      "UnauthRoleArn": "arn:aws:iam::707154229757:role/amplify-chatgpt-dev-133849-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::707154229757:role/amplify-chatgpt-dev-133849-authRole",
+      "Region": "us-west-1",
+      "DeploymentBucketName": "amplify-chatgpt-dev-133849-deployment",
+      "UnauthRoleName": "amplify-chatgpt-dev-133849-unauthRole",
+      "StackName": "amplify-chatgpt-dev-133849",
+      "StackId": "arn:aws:cloudformation:us-west-1:707154229757:stack/amplify-chatgpt-dev-133849/4b8bb730-bf06-11ed-8ee4-02d69899c47f",
+      "AmplifyAppId": "d19ww1u2j99mw0"
+    }
+  },
+  "api": {
+    "amplifyapp": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "chatgpt0d0aed60",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authchatgpt0d0aed60"
+              }
+            }
+          ]
+        },
+        "GraphQLAPIIdOutput": "pn44bvdbzrbsrkgtazbsvo23eq",
+        "GraphQLAPIEndpointOutput": "https://3xykpo4aa5hjpbeownp3buvumy.appsync-api.us-west-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-4ftizj7535bhvmdvyzdzdnp3ne"
+      },
+      "lastPushTimeStamp": "2023-03-10T06:35:44.346Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-chatgpt-dev-133849-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiamplifyapp"
+      },
+      "lastPushDirHash": "fbYZtXrzt3CqWiUvLpZa24hLRAQ="
+    }
+  },
+  "auth": {
+    "chatgpt0d0aed60": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-chatgpt-dev-133849-deployment/amplify-cfn-templates/auth/chatgpt0d0aed60-cloudformation-template.json",
+        "logicalId": "authchatgpt0d0aed60"
+      },
+      "lastPushTimeStamp": "2023-03-10T06:35:44.346Z",
+      "output": {
+        "UserPoolId": "us-west-1_V7xRtNLyQ",
+        "AppClientIDWeb": "4t3jjcgga2e5rf2c2hjbql1el6",
+        "AppClientID": "6df0eufgmqg9jkqm5fpigljuag",
+        "IdentityPoolId": "us-west-1:06a66fc4-e812-445a-a3af-00c65e06604e",
+        "UserPoolArn": "arn:aws:cognito-idp:us-west-1:707154229757:userpool/us-west-1_V7xRtNLyQ",
+        "IdentityPoolName": "chatgpt0d0aed60_identitypool_0d0aed60__dev",
+        "UserPoolName": "chatgpt0d0aed60_userpool_0d0aed60"
+      },
+      "lastPushDirHash": "TKQSPe0EIKI+PLYdjmy6XLjSkRg="
+    }
+  }
+}
