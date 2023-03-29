@@ -17,7 +17,7 @@ function Chat({signOut, user}) {
     setIsSending(true)
     setTimeout(() => (document.querySelector('.chat-box').scrollTop = 99999999), 100)
 
-    Axios.post('https://3.145.63.50:8000/chat', {msg: inputValue})
+    Axios.post('http://3.145.63.50:8000/chat', {msg: inputValue})
       // Axios.post('https://localhost:8000/chat/', {msg: inputValue})
       .then(res => {
         console.log('接口返回：', res)
