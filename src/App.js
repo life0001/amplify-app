@@ -2,8 +2,10 @@ import { Amplify } from 'aws-amplify';
 
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import Chat from './chat'
 
 import awsExports from './aws-exports';
+
 Amplify.configure(awsExports);
 
 export default function App() {
@@ -11,8 +13,7 @@ export default function App() {
     <Authenticator>
       {({ signOut, user }) => (
         <main>
-          <h1>Hello11 {user.username}</h1>
-          <button onClick={signOut}>Sign out</button>
+          <Chat signOut={signOut} user={user}/>
         </main>
       )}
     </Authenticator>
