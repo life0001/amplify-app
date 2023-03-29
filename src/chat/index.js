@@ -42,7 +42,7 @@ function Chat({signOut, user}) {
           <div key={index} className={message.isUser ? 'user-message' : 'bot-message'}>
             {message.isUser ? (
               <p>
-                <span className="icon iconMe">我</span>
+                <span className="icon iconMe">{user.username}</span>
                 {message.content}
               </p>
             ) : (
