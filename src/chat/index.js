@@ -31,6 +31,7 @@ function Chat({signOut, user}) {
       })
 
     setInputValue('')
+    document.querySelector('.chat-box').scrollTop = 99999999
   }
 
   return (
@@ -46,7 +47,7 @@ function Chat({signOut, user}) {
                 {message.content}
               </p>
             ) : (
-              <p className='resMsg'>
+              <p className="resMsg">
                 <span className="icon">AI</span>
                 <span dangerouslySetInnerHTML={{__html: message.content}}></span>
               </p>
