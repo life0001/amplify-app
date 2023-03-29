@@ -28,10 +28,10 @@ function Chat({signOut, user}) {
       })
       .finally(() => {
         setIsSending(false)
+        document.querySelector('.chat-box').scrollTop = 99999999
       })
 
     setInputValue('')
-    document.querySelector('.chat-box').scrollTop = 99999999
   }
 
   return (
