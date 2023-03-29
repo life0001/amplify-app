@@ -15,8 +15,8 @@ function Chat({signOut, user}) {
 
     setMessages([...messages, {content: inputValue, isUser: true}])
     setIsSending(true)
-    document.querySelector('.chat-box').scrollTop = 99999999
-    
+    setTimeout(() => (document.querySelector('.chat-box').scrollTop = 99999999), 500)
+
     Axios.post('https://3.145.63.50:8000/chat', {msg: inputValue})
       // Axios.post('https://localhost:8000/chat/', {msg: inputValue})
       .then(res => {
@@ -30,7 +30,7 @@ function Chat({signOut, user}) {
       })
       .finally(() => {
         setIsSending(false)
-        document.querySelector('.chat-box').scrollTop = 99999999
+        setTimeout(() => (document.querySelector('.chat-box').scrollTop = 99999999), 500)
       })
 
     setInputValue('')
