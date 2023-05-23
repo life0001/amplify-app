@@ -1,21 +1,8 @@
-import { Amplify } from 'aws-amplify';
-
-import { Authenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
+import { useState } from 'react';
 import Chat from './chat'
-
-import awsExports from './aws-exports';
-
-Amplify.configure(awsExports);
-
+import Login from './chat/login/login'
 export default function App() {
-  return (
-    <Authenticator>
-      {({ signOut, user }) => (
-        <main>
-          <Chat signOut={signOut} user={user}/>
-        </main>
-      )}
-    </Authenticator>
-  );
+  const [yourName, setYourName] = useState('')
+
+  return yourName ? <Chat yourName={yourName}/> : <Login setYourName={setYourName}></Login>
 }
