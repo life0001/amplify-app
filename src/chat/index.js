@@ -1,62 +1,66 @@
-import { useRef, useState } from 'react'
-import Axios from 'axios'
-import Header from '../Header'
-import './chat.css'
-import Footer from '../footer'
+import React, { useState, useCallback, useRef, useEffect } from 'react'
+import axios from 'axios'
 
-function Chat(props) {
-  // const inputRef = useRef(null);
+import Header from '../Header'
+import Footer from '../Footer'
+import './chat.css'
+
+const api = axios.create({
+  // baseURL: 'http://localhost:8000',
+  baseURL: 'http://54.176.63.104:8000',
+  timeout: 10000,
+})
+
+export default function Chat(props) {
   const [messages, setMessages] = useState([])
   const [inputValue, setInputValue] = useState('')
   const [temperature, setTemperature] = useState(0.7)
   const [isSending, setIsSending] = useState(false)
+  const chatBoxRef = useRef(null)
 
-  const handleSubmit = event => {
+  const handleSubmit = useCallback(async event => {
     event.preventDefault()
     if (!inputValue) return
 
-    setMessages([...messages, { content: inputValue, isUser: true }])
+    setMessages(prevMessages => [...prevMessages, { content: `${inputValue}`, isUser: true }])
     setIsSending(true)
-    setTimeout(() => (document.querySelector('.chat-box').scrollTop = 99999999), 100)
     const params = { msg: inputValue, user_id: props.yourName, temperature }
     console.log("发送的参数：", params)
-    // Axios.post('http://54.176.63.104:8000/chat', params)
-      Axios.post('https://localhost:8000/chat', params)
-      .then(res => {
-        console.log('接口返回：', res)
-        const content = res.data.msg.replace(/\n/g, '<br />')
-        setMessages(newMessages => [...newMessages, { content, isUser: false }])
-      })
-      .catch(err => {
-        console.error(err)
-        setMessages(newMessages => [...newMessages, { content: '网络错误或请求太频繁', isUser: false }])
-      })
-      .finally(() => {
-        setIsSending(false)
-        setTimeout(() => {
-          document.querySelector('.chat-box').scrollTop = 99999999
-          // inputRef.current.focus();
-        }, 100)
-      })
+    try {
+      const res = await api.post('/chat', params)
+      console.log("res：", res)
+      const { msg } = res.data
+      const content = msg.replace(/\n/g, '<br />')
+      setMessages(prevMessages => [...prevMessages, { content, isUser: false }])
+    } catch (err) {
+      console.error(err)
+      setMessages(prevMessages => [...prevMessages, { content: '网络错误或请求太频繁', isUser: false }])
+    } finally {
+      setIsSending(false)
+    }
 
-    setInputValue('')
-  }
+  }, [inputValue, props.yourName, temperature])
 
-  function temperatureChange(event) {
-    if (event.target.value < 0) return
-    return setTemperature(event.target.value > 2 ? 2 : event.target.value)
-  }
+  const temperatureChange = useCallback(event => {
+    setTemperature(prevTemperature => Math.min(Math.max(parseFloat(event.target.value), 0), 2))
+  }, [])
 
-  function temperatureBlur(event) {
+  const temperatureBlur = useCallback(event => {
     const num = Math.abs(parseFloat(event.target.value))
     setTemperature(num)
-  }
+  }, [])
 
-
+  useEffect(() => {
+    chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight
+    setInputValue('')
+    return () => {
+      chatBoxRef.current.scrollTop = 0
+    }
+  }, [messages])
 
   return (
     <div className="chat-container">
-      <div className="chat-box">
+      <div className="chat-box" ref={chatBoxRef}>
         <Header yourName={props.yourName} />
 
         {messages.map((message, index) => (
@@ -77,7 +81,6 @@ function Chat(props) {
       </div>
       <form onSubmit={handleSubmit} className="input-container">
         <input
-          // ref={inputRef}
           type="text"
           placeholder={isSending ? '' : 'Type your message here'}
           disabled={isSending}
@@ -87,12 +90,12 @@ function Chat(props) {
           onBlur={event => setInputValue(event.target.value.trim())}
           className="input-field"
         />
-        {!isSending ? (
+        {isSending ? (
+          <span className="loading"></span>
+        ) : (
           <button disabled={!inputValue} type="submit" className={inputValue ? "send_button button_active" : "send_button  button_disabled"}>
             Send
           </button>
-        ) : (
-          <span className="loading"></span>
         )}
       </form>
       <div className='temperatureBox'>
@@ -112,5 +115,3 @@ function Chat(props) {
     </div>
   )
 }
-
-export default Chat
