@@ -5,6 +5,7 @@ import BirthdayPage from './birthday'
 export default function BirthdayTitle() {
   const [showBirthdayPage, setShowBirthdayPage] = useState(false);
 
+  document.title = 'Happy Birthday'
   const handleEnterBirthdayPage = () => {
     setShowBirthdayPage(true);
   };

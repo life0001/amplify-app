@@ -111,7 +111,7 @@
   height: 100%;
   background-color: #000;
   opacity: 1;
-  animation: fadeOut 6s ease-in-out forwards;
+  animation: fadeOut 3s ease-in-out forwards;
 }
 
 .BirthdayPage .title {
@@ -122,7 +122,7 @@
   margin-bottom: 0;
   text-shadow: 0 0 5px #FF4081, 0 0 10px #FF4081, 0 0 20px #FF4081, 0 0 30px #FF4081;
   /* 添加文字阴影效果 */
-  animation: confetti 3s ease-in, neonGlow .1s ease-in-out alternate infinite;
+  animation: confetti 1s ease-in, neonGlow .1s ease-in-out alternate infinite;
   /* background: linear-gradient(45deg, #FF4081, #FFC107, #FF4081); */
   background-clip: text;
   -webkit-background-clip: text;

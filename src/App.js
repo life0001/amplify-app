@@ -22,5 +22,6 @@ export default function App() {
 }
 
 function Home({ yourName, setYourName }) {
+  document.title = 'pwfGPT'
   return yourName ? <Chat yourName={yourName} /> : <Login setYourName={setYourName} />;
 }
