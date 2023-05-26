@@ -1,0 +1,227 @@
+/* BirthdayTitle样式 */
+.BirthdayTitle {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('./lyl.jpeg') 73% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.IntroPage {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 1rem;
+  text-align: center;
+}
+
+.intro-title {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: scaleIn 1s ease-in-out;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+.intro-description {
+  font-size: 24px;
+  color: #fff;
+  /* background-color: #FCE4EC; */
+  margin: 20px 0;
+  padding: 1rem;
+  opacity: 0;
+  animation: fadeInTranslate 2s ease-in-out 0.5s forwards;
+  text-shadow: 2px 2px 0px rgb(0 0 0);
+  position: relative;
+  z-index: 1;
+}
+
+.intro-button {
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  border-color: #FF4081;
+  background-color: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(200px);
+  animation: fadeIn 2s ease-in-out 5s forwards;
+  position: relative;
+  z-index: 1;
+}
+
+.intro-button:hover {
+  background-color: #FF4081;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInTranslate {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* BirthdayPage样式 */
+.BirthdayPage {
+  position: relative;
+  background-color: #FCE4EC;
+  /* 修改背景颜色为粉红色 */
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  /* animation: fadeIn 1s ease-in; */
+  overflow: hidden;
+  /* 隐藏溢出的内容 */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 1;
+  animation: fadeOut 6s ease-in-out forwards;
+}
+
+.BirthdayPage .title {
+  position: unset;
+  font-size: 2rem;
+  color: #FF4081;
+  /* 修改字体颜色为粉色 */
+  margin-bottom: 0;
+  text-shadow: 0 0 5px #FF4081, 0 0 10px #FF4081, 0 0 20px #FF4081, 0 0 30px #FF4081;
+  /* 添加文字阴影效果 */
+  animation: confetti 3s ease-in, neonGlow .1s ease-in-out alternate infinite;
+  /* background: linear-gradient(45deg, #FF4081, #FFC107, #FF4081); */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #fff;
+}
+
+.BirthdayPage .content {
+  text-align: center;
+  /* margin-bottom: 30px; */
+}
+
+.BirthdayPage .description {
+  font-size: 24px;
+  color: #FF4081;
+  margin-bottom: 10px;
+}
+
+.interactions {
+  margin-top: 20px;
+}
+
+.BirthdayPage .button {
+  background-color: #FF4081;
+  /* 修改按钮背景色为粉色 */
+  color: #fff;
+  font-size: 20px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.BirthdayPage .audio {
+  display: none;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(200px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes neonGlow {
+  0% {
+    text-shadow: 0 0 5px #FF4081, 0 0 10px #FF4081, 0 0 20px #FF4081, 0 0 30px #FF4081;
+  }
+
+  50% {
+    text-shadow: 0 0 5px #FF4081, 0 0 10px #FF4081, 0 0 20px #FF4081, 0 0 30px #FF4081, 0 0 40px #FF4081, 0 0 50px #FF4081, 0 0 60px #FF4081;
+  }
+
+  100% {
+    text-shadow: 0 0 5px #FF4081, 0 0 10px #FF4081, 0 0 20px #FF4081, 0 0 30px #FF4081, 0 0 40px #FF4081, 0 0 50px #FF4081, 0 0 60px #FF4081, 0 0 70px #FF4081, 0 0 80px #FF4081;
+  }
+}
+
+@keyframes confetti {
+  0% {
+    position: fixed;
+    font-size: 20rem;
+    z-index: 2;
+    transform: rotate(0deg) scale(0);
+  }
+
+  50% {
+    position: fixed;
+    font-size: 10rem;
+    z-index: 2;
+    transform: rotate(180deg) scale(2);
+  }
+
+  100% {
+    position: unset;
+    font-size: 2rem;
+    z-index: 1;
+    transform: rotate(360deg) scale(1);
+  }
+
+  0% {
+    text-shadow: 0 0 5px #FF4081, 0 0 10px #FF4081, 0 0 20px #FF4081, 0 0 30px #FF4081, 0 0 40px #FF4081, 0 0 50px #FF4081, 0 0 60px #FF4081;
+  }
+
+  100% {
+    text-shadow: 0 0 5px #FF4081, 0 0 10px #FF4081, 0 0 20px #FF4081, 0 0 30px #FF4081, 0 0 40px #FF4081, 0 0 50px #FF4081, 0 0 60px #FF4081, 0 0 70px #FF4081, 0 0 80px #FF4081;
+  }
+}
